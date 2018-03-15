@@ -21,16 +21,25 @@ import { CoursesService } from './courses.service';
             (click) = "onSave($event)"
             >Save</button>
         </div>
-        
+        <br/> <br/> <br/>
+        <div>
+            Name : {{coursesList[0].name | uppercase | lowercase}} <br/>
+            Price : {{coursesList[0].price | number}} <br/>
+            Students : {{coursesList[0].students | number}} <br/>
+            Rating : {{coursesList[0].rating | number}} <br/>
+            Release Date : {{coursesList[0].releaseDate | date : 'shortDate'}}
+        </div>
         `,
 })
 export class CoursesComponent {
     title = "List Of Courses";
     courses;
+    coursesList;
     isActive = true;
     email = "example@gmail.com";
     constructor(service : CoursesService){
         this.courses = service.getCourses();
+        this.coursesList = service.getCourseList();
     }
 
     onSave($event){
@@ -43,7 +52,6 @@ export class CoursesComponent {
         console.log("Clicked on Div ! ");
         console.log($event);
     }
-
     onKeyUp(email){
         console.log("Enter was pressed !!");
         console.log("input : ", this.email);
